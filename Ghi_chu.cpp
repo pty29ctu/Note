@@ -29,7 +29,10 @@ void add_note(List_note* l) {
 	l->count_note++;
 	printf("Note added!\n");
 }
-void del_note(List_note* l) {
+void del_note(List_note* l, int k) {
+	for (int i = k-1; i<l->count_note-1; i++ ) {
+		l->a[i] = l->a[i+1];
+	}
 	l->count_note--;
 	printf("Note deleted!\n");	
 }
@@ -54,7 +57,14 @@ void run_program() {
 		}
 		if (n == 3) {
 			system("cls");
-			del_note(&l);
+			int k;
+			for (int i = 0 ; i < l.count_note ; i++) {
+				printf("%d. %s\n",i+1, l.a[i]);
+			}
+			printf("Which note do you want to delete?\n");
+			scanf("%d",&k);
+			del_note(&l,k);
+			system("cls");
 		}
 		if (n == 4) {
 			system("cls");
